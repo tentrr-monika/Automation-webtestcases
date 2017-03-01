@@ -5,7 +5,10 @@ import io.ddavison.conductor.Config;
 import io.ddavison.conductor.Locomotive;
 import org.junit.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -39,10 +42,13 @@ public class Giftcard extends Locomotive {
 
         WebDriverWait wait = new WebDriverWait(driver, 30);
         // ERROR: Caught exception [ERROR: Unsupported command [selectWindow | name=none | ]]
-
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='btn-shop-now']")));
-        //
+        WebElement element3= wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h1[contains(text(), 'A Card for All Seasons')]")));
+        String message3 = element3.getText();
+        System.out.println(message3);
         driver.findElement(By.xpath(".//*[@id='btn-shop-now']")).click();
+        /*WebElement element7= wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h2[contains(text(), ‘Select your Gift’)]")));
+        String message7 = element7.getText();
+        System.out.println(message7);*/
         try {
             // to sleep 10 seconds
             java.lang.Thread.sleep(1000);
@@ -56,7 +62,9 @@ public class Giftcard extends Locomotive {
 
         //driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         // wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//div[contains(text(), '28')]")));
-
+        /*WebElement element8= wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h2[contains(text(), ‘Select a Day to Deliver the Email’)]")));
+        String message8 = element8.getText();
+        System.out.println(message8);*/
         try {
             // to sleep 10 seconds
             java.lang.Thread.sleep(1000);
@@ -67,7 +75,7 @@ public class Giftcard extends Locomotive {
             return;
         }
         driver.findElement(By.xpath(".//div[contains(text(), '28')]")).click();
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+
         try {
             // to sleep 10 seconds
             java.lang.Thread.sleep(1000);
@@ -78,8 +86,21 @@ public class Giftcard extends Locomotive {
             return;
         }
         //wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("btn-next-step-delivery")));
+        WebElement element5=  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("btn-next-step-delivery")));
+        String message5 = element5.getText();
+        System.out.println(message5);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         driver.findElement(By.id("btn-next-step-delivery")).click();
 
+        try {
+            // to sleep 10 seconds
+            java.lang.Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            // recommended because catching InterruptedException clears interrupt flag
+            java.lang.Thread.currentThread().interrupt();
+            // you probably want to quit if the thread is interrupted
+            return;
+        }
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         try {
             // to sleep 10 seconds
@@ -90,12 +111,16 @@ public class Giftcard extends Locomotive {
             // you probably want to quit if the thread is interrupted
             return;
         }
-       WebElement element=  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("btn-next-step-payment")));
+        //wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("btn-next-step-payment")));
+        driver.findElement(By.id("btn-next-step-payment")).click();
+       /*WebElement element=  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h2[contains(text(), ‘Need a Physical Card Too?’)]")));
         String message = element.getText();
         System.out.println(message);
-        driver.findElement(By.id("btn-next-step-payment")).click();
+        driver.findElement(By.id("btn-next-step-payment")).click();*/
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("btn-gift-card-submit")));
+        WebElement element6=  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("btn-gift-card-submit")));
+        String message6 = element6.getText();
+        System.out.println(message6);
         try {
             // to sleep 10 seconds
             java.lang.Thread.sleep(1000);
@@ -160,13 +185,17 @@ public class Giftcard extends Locomotive {
         driver.findElement(By.id("btn-gift-card-submit")).click();
         driver.findElement(By.id("id_payment_card_security_code")).clear();
         driver.findElement(By.id("id_payment_card_security_code")).sendKeys("678");
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("btn-gift-card-submit")));
         driver.findElement(By.id("btn-gift-card-submit")).click();
-
+        WebElement element18= wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".credit-card-options")));
+        String message18 = element18.getText();
+        System.out.println(message18);
+        WebElement element2= wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"client-side-errors\"]")));
+        String message2 = element2.getText();
+        System.out.println(message2);
         //WebElement elementToClick = driver.findElement(By.cssSelector("label.label-checkbox::before"));
         //elementToClick.click();
-        List<WebElement> selectElements= driver.findElements(By.xpath(".label-checkbox"));
-        if (!(driver.findElement(By.cssSelector(".label-checkbox")).isSelected()))
+        /*List<WebElement> selectElements= driver.findElements(By.cssSelector(".page-gift-card .label-checkbox"));
+        if (!(driver.findElement(By.cssSelector(".page-gift-card .label-checkbox")).isSelected()))
         {
             for (int i = 0; i < 1 ; i++)
             {
@@ -181,7 +210,7 @@ public class Giftcard extends Locomotive {
                 }
                 selectElements.get(i).click();
             }
-        }
+        }*/
         try {
             // to sleep 10 seconds
             java.lang.Thread.sleep(1000);
@@ -190,11 +219,25 @@ public class Giftcard extends Locomotive {
             java.lang.Thread.currentThread().interrupt();
             // you probably want to quit if the thread is interrupted
             return;
-        }//wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("id_payment_terms_agreement")));
+        }
+        WebElement elementToClick = driver.findElement(By.cssSelector(".page-gift-card .label-checkbox"));
+
+        ((JavascriptExecutor)driver).executeScript("window.scrollTo(600,"+elementToClick.getLocation().x+")");
+        ((JavascriptExecutor)driver).executeScript("window.scrollTo(25,"+elementToClick.getLocation().y+")");
+
+        elementToClick.click();
+        try {
+            // to sleep 10 seconds
+            java.lang.Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            // recommended because catching InterruptedException clears interrupt flag
+            java.lang.Thread.currentThread().interrupt();
+            // you probably want to quit if the thread is interrupted
+            return;
+        }
 
         driver.findElement(By.id("btn-gift-card-submit")).click();
-       // new Select(driver.findElement(By.id("id_payment_expiration_year"))).selectByVisibleText("2020");
-       // new Select(driver.findElement(By.id("id_payment_expiration_year"))).selectByVisibleText("2016");*/
+
 
     }
 }
