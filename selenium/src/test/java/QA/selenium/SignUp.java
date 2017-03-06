@@ -13,11 +13,11 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 
 @Config(
         browser = Browser.CHROME,
-        url     = "https://www.tentrr.com/"
+        url     = "https://qa1.tentrr.com/"
 )
 public class SignUp extends Locomotive{
     @Test
-    public void testSignUp() throws Exception {
+    public  void testSignUp() throws Exception {
         Thread.sleep(5000);
         String winHandleBefore = driver.getWindowHandle();
         driver.findElement(By.xpath(".//button[contains(@class, 'close')]/following::div/div[1]/button")).click();
